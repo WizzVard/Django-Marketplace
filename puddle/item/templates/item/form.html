@@ -6,7 +6,11 @@
 <h1 class="mb-6 text-3xl">{{ title }}</h1>
 
 <form method="post" action="." enctype="multipart/form-data">
+    # This is a Django template tag that adds a CSRF (Cross-Site Request Forgery) token to the form.
+    # It is a security measure to protect against malicious forms submitted from other sites.
+    # Django requires this token in forms that modify data (e.g., forms using POST).
     {% csrf_token %}
+
 
     <div class="space-y-4">
         {{ form.as_p }}

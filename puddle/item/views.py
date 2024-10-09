@@ -25,7 +25,9 @@ def items(request):
     })
 
 def detail(request, pk):
+    # Create an Item object and if this object was not exist in the database, it will give a 404 error
     item = get_object_or_404(Item, pk=pk)
+    # Get 3 items which are in the same category and is not sold
     related_items = Item.objects.filter(category=item.category, is_sold=False).exclude(pk=pk)[0:3]
 
 

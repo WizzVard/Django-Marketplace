@@ -13,6 +13,7 @@ class LoginForm(AuthenticationForm):
     }))
 
 class SignupForm(UserCreationForm):
+    # Class for overriding configuration of the form
     class Meta:
         model = User
         fields = ('username', 'email', 'password1', 'password2')

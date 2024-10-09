@@ -17,7 +17,9 @@
 
             <ul>
                 {% for category in categories %}
+                    # if if category.id == category_id then we show it as active by changing the background color
                     <li class="py-2 px-2 rounded-xl{% if category.id == category_id %} bg-gray-200{% endif %}">
+                        # Search for the items that are in the specific category
                         <a href="{% url 'item:items' %}?query={{ query }}&category={{ category.id }}">{{ category.name }}</a>
                     </li>
                 {% endfor %}

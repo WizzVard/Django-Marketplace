@@ -6,15 +6,20 @@ from .forms import NewItemForm, EditItemForm
 from .models import Category, Item
 
 def items(request):
+    # we get this from the search bar when browsing items
     query = request.GET.get('query', '')
     category_id = request.GET.get('category', 0)
     categories = Category.objects.all()
     items = Item.objects.filter(is_sold=False)
 
+    # Search items by pressing the specific category
     if category_id:
         items = items.filter(category_id=category_id)
 
+    # Search item by searching bar
     if query:
+        # Q makes it easier to search in multiple fields
+        # IF the query contains insensitive name(name__i) or insensitive description(description_i)
         items = items.filter(Q(name__icontains=query) | Q(description__icontains=query))
 
     return render(request, 'item/items.html', {
